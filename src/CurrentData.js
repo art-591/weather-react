@@ -1,5 +1,6 @@
 import React from "react";
 import "./CurrentData.css";
+import CurrentTime from "./CurrentTime";
 
 export default function CurrentData(props) {
   let weatherData = {
@@ -8,20 +9,19 @@ export default function CurrentData(props) {
     description: props.data[2],
     humidity: props.data[3],
     wind: props.data[4],
-    iconUrl: "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+    iconUrl: `http://openweathermap.org/img/wn/${props.data[5]}@2x.png`,
   };
   return (
     <div className="data">
       <div className="row">
         <div className="col-8">
           <h1 className="current-city">{weatherData.city}</h1>
-          <div className="current-time property"></div>
+          <CurrentTime />
           <div className="sky">{weatherData.description}</div>
           <div className="weather">
-            Humidity:
+            Humidity:{" "}
             <span className="humidity property">{weatherData.humidity}%</span>,
-            Wind:
-            <span className="wind property">{weatherData.wind} mph</span>
+            Wind: <span className="wind property">{weatherData.wind} mph</span>
           </div>
         </div>
         <div className="col-1">

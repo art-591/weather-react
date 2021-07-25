@@ -41,7 +41,7 @@ export default function SearchForm() {
   }
 
   return (
-    <div className="searchForm">
+    <div className="weatherContainer">
       <div className="row">
         <form className="search col-10 row" onSubmit={searchCity}>
           <input
