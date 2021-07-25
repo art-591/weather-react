@@ -14,7 +14,7 @@ export default function SearchForm() {
   let weatherData = [city, temp, description, humidity, wind, icon, data];
 
   let apiKey = `1f6bf5f6e1d5da325c16280778c22717`;
-  let units = "imperial";
+  let units = `imperial`;
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
   function searchWeather(response) {
@@ -23,6 +23,7 @@ export default function SearchForm() {
     setHumidity(response.data.main.humidity);
     setWind(response.data.wind.speed);
     setIcon(response.data.weather[0].icon);
+    setCity(response.data.name);
   }
 
   function updateCity(event) {
@@ -35,9 +36,19 @@ export default function SearchForm() {
     setData(true);
   }
 
+  function currentCoordinates(position) {
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    let units = `imperial`;
+    let urlCoords = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+    axios.get(urlCoords).then(searchWeather);
+    console.log(urlCoords);
+    setData(true);
+  }
+
   function searchCoordinates(event) {
     event.preventDefault();
-    alert("good morning");
+    navigator.geolocation.getCurrentPosition(currentCoordinates);
   }
 
   return (
