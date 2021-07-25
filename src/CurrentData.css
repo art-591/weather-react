@@ -8,14 +8,13 @@ body {
 
 .container {
   margin-top: 80px;
-  width: 675px;
-  opacity: 85%;
+  width: 750px;
+  opacity: 80%;
 }
 
 .outside {
   border: none;
-
-  padding: 40px;
+  padding: none;
 }
 
 .no-gutters {
