@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import CurrentData from "./CurrentData";
 
 export default function SearchForm() {
+  const [citySearch, setCitySearch] = useState(null);
   const [city, setCity] = useState(null);
   const [temp, setTemp] = useState(null);
   const [description, setDescription] = useState(null);
@@ -15,7 +16,6 @@ export default function SearchForm() {
 
   let apiKey = `1f6bf5f6e1d5da325c16280778c22717`;
   let units = `imperial`;
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
   function searchWeather(response) {
     setTemp(response.data.main.temp);
@@ -27,11 +27,12 @@ export default function SearchForm() {
   }
 
   function updateCity(event) {
-    setCity(event.target.value);
+    setCitySearch(event.target.value);
   }
 
   function searchCity(event) {
     event.preventDefault();
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=${apiKey}&units=${units}`;
     axios.get(url).then(searchWeather);
     setData(true);
   }
@@ -39,10 +40,9 @@ export default function SearchForm() {
   function currentCoordinates(position) {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
-    let units = `imperial`;
+
     let urlCoords = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
     axios.get(urlCoords).then(searchWeather);
-    console.log(urlCoords);
     setData(true);
   }
 
