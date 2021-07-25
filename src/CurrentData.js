@@ -1,13 +1,13 @@
 import React from "react";
 import "./CurrentData.css";
 
-export default function CurrentData() {
+export default function CurrentData(props) {
   let weatherData = {
-    city: "New York",
-    temperature: 80,
-    description: "Light Rain",
-    humidity: 90,
-    wind: 3,
+    city: props.data[0],
+    temperature: Math.round(props.data[1]),
+    description: props.data[2],
+    humidity: props.data[3],
+    wind: props.data[4],
     iconUrl: "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
   };
   return (

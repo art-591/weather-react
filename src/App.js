@@ -1,6 +1,6 @@
 import "./App.css";
 import SearchForm from "./SearchForm";
-import CurrentData from "./CurrentData";
+
 import Forecast from "./Forecast";
 
 function App() {
@@ -9,11 +9,14 @@ function App() {
       <div className="card outside">
         <div className="card-body">
           <SearchForm />
-          <CurrentData />
+
           <Forecast />
         </div>
       </div>
-      <small className="coder">Coded by Anel Sanders</small>
+      <small className="coder">
+        Coded by Anel Sanders.{" "}
+        <a href="https://github.com/art-591/weather-react">GitHub</a>.
+      </small>
     </div>
   );
 }
