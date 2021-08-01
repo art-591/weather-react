@@ -11,11 +11,22 @@ export default function SearchForm() {
   const [wind, setWind] = useState(null);
   const [icon, setIcon] = useState(null);
   const [data, setData] = useState(false);
+  const [lat, setLat] = useState(null);
+  const [lon, setLon] = useState(null);
 
-  let weatherData = [city, temp, description, humidity, wind, icon, data];
-
-  let apiKey = `1f6bf5f6e1d5da325c16280778c22717`;
-  let units = `imperial`;
+  let weatherData = {
+    cityName: city,
+    temperature: Math.round(temp),
+    weatherDescription: description,
+    humidityPercentage: humidity,
+    windSpeed: Math.round(wind),
+    iconID: icon,
+    dataValue: data,
+    latitude: lat,
+    longitude: lon,
+    units: "imperial",
+    apiKey: `1f6bf5f6e1d5da325c16280778c22717`,
+  };
 
   function searchWeather(response) {
     setTemp(response.data.main.temp);
@@ -24,6 +35,9 @@ export default function SearchForm() {
     setWind(response.data.wind.speed);
     setIcon(response.data.weather[0].icon);
     setCity(response.data.name);
+    setLat(response.data.coord.lat);
+    setLon(response.data.coord.lon);
+    setData(true);
   }
 
   function updateCity(event) {
@@ -32,18 +46,15 @@ export default function SearchForm() {
 
   function searchCity(event) {
     event.preventDefault();
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=${apiKey}&units=${units}`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=${weatherData.apiKey}&units=${weatherData.units}`;
     axios.get(url).then(searchWeather);
-    setData(true);
   }
 
   function currentCoordinates(position) {
-    let lat = position.coords.latitude;
-    let lon = position.coords.longitude;
-
-    let urlCoords = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    let urlCoords = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherData.apiKey}&units=${weatherData.units}`;
     axios.get(urlCoords).then(searchWeather);
-    setData(true);
   }
 
   function searchCoordinates(event) {
