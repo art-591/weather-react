@@ -1,20 +1,25 @@
 import React from "react";
 import "./Forecast.css";
-//import axios from "axios";
+import axios from "axios";
 
 export default function Forecast(props) {
-  let dailyWeather = 85;
-  console.log(props.data);
-  console.log(dailyWeather);
-  /*if (props.data.dataValue === true) {
+  if (props.dataValue === true) {
+    let lat = props.lat;
+    let lon = props.lon;
+    let apiKey = `1f6bf5f6e1d5da325c16280778c22717`;
+    let units = `imperial`;
+    let temperature = 91;
+
     function getForecastData(response) {
-      dailyWeather = response.data.daily.temp[0];
+      let dailyWeather = response.data.daily;
+      console.log(dailyWeather);
     }
 
-    let lat = props.data.latitude;
-    let lon = props.data.longitude;
-    let urlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${props.data.apiKey}&units=${props.data.units}`;
+    let urlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
     axios.get(urlForecast).then(getForecastData);
-*/
-  return <div>85</div>;
+
+    return <div>{temperature}</div>;
+  } else {
+    return <div></div>;
+  }
 }

@@ -6,6 +6,7 @@ import Forecast from "./Forecast";
 export default function CurrentData(props) {
   if (props.data.dataValue === true) {
     let weatherData = props.data;
+
     let iconUrl = `https://openweathermap.org/img/wn/${weatherData.iconID}@2x.png`;
     return (
       <div>
@@ -35,7 +36,12 @@ export default function CurrentData(props) {
             </div>
           </div>
         </div>
-        <Forecast data={weatherData} />
+        <Forecast
+          data={weatherData}
+          dataValue={props.data.dataValue}
+          lat={props.data.latitude}
+          lon={props.data.longitude}
+        />
       </div>
     );
   } else {
