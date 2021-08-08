@@ -1,16 +1,12 @@
 import "./App.css";
 import SearchForm from "./SearchForm";
 
-import Forecast from "./Forecast";
-
 function App() {
   return (
     <div className="container">
       <div className="card outside">
         <div className="card-body">
           <SearchForm />
-
-          <Forecast />
         </div>
       </div>
       <small className="coder">
