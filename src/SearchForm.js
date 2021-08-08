@@ -89,7 +89,12 @@ export default function SearchForm() {
         </form>
       </div>
       <CurrentData data={weatherData} />
-      <Forecast data={weatherData} />
+      <Forecast
+        data={weatherData.dataValue}
+        lat={weatherData.latitude}
+        lon={weatherData.longitude}
+        apiKey={weatherData.apiKey}
+      />
     </div>
   );
 }
