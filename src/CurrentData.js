@@ -1,7 +1,6 @@
 import React from "react";
 import "./CurrentData.css";
 import CurrentTime from "./CurrentTime";
-import Forecast from "./Forecast";
 
 export default function CurrentData(props) {
   if (props.data.dataValue === true) {
@@ -36,12 +35,6 @@ export default function CurrentData(props) {
             </div>
           </div>
         </div>
-        <Forecast
-          data={weatherData}
-          dataValue={props.data.dataValue}
-          lat={props.data.latitude}
-          lon={props.data.longitude}
-        />
       </div>
     );
   } else {
